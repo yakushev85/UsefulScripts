@@ -80,7 +80,6 @@ sls invoke local --function create --stage development --region us-east-1 --path
 serverless deploy --function sign-in --stage development --region us-east-1
 serverless deploy --stage development --region us-east-1
 serverless deploy --stage testing
-serverless deploy --stage staging
 ```
 
 - creds
@@ -113,7 +112,7 @@ curl -F crash_identifier=Atest1324 -F file_name=logs_ready.zip -F identifier=tes
 - connect via certificate
 ```
 scp -i ~/.ssh/test.pem ./test.py ubuntu@0.0.0.0:~/backend
-scp -i ~/.ssh/frame.pem ubuntu@0.0.0.0:~/backend/test.sql ~/Documents
+scp -i ~/.ssh/test.pem ubuntu@0.0.0.0:~/backend/test.sql ~/Documents
 ssh -i ~/.ssh/test.pem ubuntu@0.0.0.0
 ```
 
@@ -125,10 +124,5 @@ find -x ~/ -type f -size +1G
 - sdk calls
 ```
 curl -v https://test.com/rest/ValidationService?token=88qlmNTC1
-```
-
-## tomcat deploy
-```
-cp target/WebM.war ~/Documents/apache-tomcat/webapps && sh ~/Documents/apache-tomcat/bin/shutdown.sh && sleep 8 && sh ~/Documents/apache-tomcat/bin/startup.sh
 ```
 
