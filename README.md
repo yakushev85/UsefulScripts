@@ -95,6 +95,11 @@ flyway repair -url=jdbc:postgresql://dev.test.us-east-1.rds.amazonaws.com:5432/t
 ```
 
 ## Curl
+- sdk calls
+```
+curl -v https://test.com/rest/ValidationService?token=88qlmNTC1
+```
+
 - POST multipart/form-data
 ```
 echo "test\ntest\ntest\n" > 1.log && zip logs.zip 1.log
@@ -121,8 +126,5 @@ ssh -i ~/.ssh/test.pem ubuntu@0.0.0.0
 find -x ~/ -type f -size +1G
 ```
 
-- sdk calls
-```
-curl -v https://test.com/rest/ValidationService?token=88qlmNTC1
-```
+
 
