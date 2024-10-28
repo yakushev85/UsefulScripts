@@ -6,6 +6,10 @@
 sudo lshw -short -C memory ; lscpu ; df
 ```
 
+## Can't see camera
+```
+systemctl --user restart pipewire
+```
 
 
 
