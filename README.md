@@ -121,10 +121,15 @@ scp -i ~/.ssh/test.pem ubuntu@0.0.0.0:~/backend/test.sql ~/Documents
 ssh -i ~/.ssh/test.pem ubuntu@0.0.0.0
 ```
 
+## FIND
 - find all files in ~/ with size bigger than 1Gb
 ```
 find -x ~/ -type f -size +1G
 ```
 
+- convert all videos from current directory to converted/
+```
+find . -type f -exec ffmpeg -i {} converted/{}.mkv \;
+```
 
 
