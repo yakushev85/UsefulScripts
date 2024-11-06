@@ -3,7 +3,7 @@
 ## Show specs
 - memory, cpu and disks
 ```
-sudo lshw -short -C memory ; lscpu ; df
+free -h ; lscpu ; df -h
 ```
 
 ## Can't see camera
