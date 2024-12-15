@@ -61,6 +61,10 @@ docker exec -it container_name /bin/bash
 docker container ls
 ```
 
+- run Damn Vulnerable Web Application with creds admin / password
+```
+docker run --rm -it -p 80:80 vulnerables/web-dvwa
+```
 
 ## SLS
 - to start api locally after container is up
