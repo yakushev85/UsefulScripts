@@ -136,4 +136,8 @@ find -x ~/ -type f -size +1G
 find . -type f -exec ffmpeg -i {} converted/{}.mkv \;
 ```
 
-
+## FFMPEG
+- get audio from video
+```
+ffmpeg -i input.webm -vn -c:a copy output.ogg
+```
