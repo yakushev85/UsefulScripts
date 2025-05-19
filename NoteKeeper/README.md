@@ -12,5 +12,5 @@ Run docker using `docker compose up`. If backend container doesn't start and sho
 
 ## Test
 
-OpenAPI documentation: http://localhost:8080/docs 
+API documentation: http://localhost:8080/docs 
 
