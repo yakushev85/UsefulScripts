@@ -8,7 +8,7 @@ Build application: `docker compose build`.
 
 ## Step 2
 
-Run docker using `docker compose up`.
+Run docker using `docker compose up`. If backend container doesn't start and shows `Can't connect to server on 'notekeeper_database' (115)`, use `docker container start notekeeper_backend`.
 
 ## Test
 
