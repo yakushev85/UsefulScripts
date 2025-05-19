@@ -1,0 +1,35 @@
+
+services:   
+  notekeeper_database:
+    image: mysql:9.0
+    container_name: notekeeper_database
+    environment:
+      MYSQL_ROOT_PASSWORD: ydG8x0hXClMVn63TGoLD
+      MYSQL_DATABASE: nk   
+      MYSQL_USER: nk
+      MYSQL_PASSWORD: ydG8x0hXClMVn63TGoLD
+      MYSQL_TCP_PORT: 3308
+    ports:
+      - 3308:3308
+    volumes:
+      - nkDatabaseData:/var/lib/mysql
+    networks:
+      - nkBackendNetwork
+
+  notekeeper_backend:
+    build: .
+    container_name: notekeeper_backend
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+    ports:
+      - 8080:8080
+    depends_on:
+      - notekeeper_database
+    networks:
+      - nkBackendNetwork
+
+volumes:
+  nkDatabaseData:
+  
+networks:
+  nkBackendNetwork:
+  
