@@ -60,6 +60,7 @@ class Note_Request(BaseModel):
     content: str
 
 class Note_Response(BaseModel):
+    id: int | None = None
     title: str
     content: str
     created_at: datetime
@@ -128,6 +129,7 @@ def create_note(req: Note_Request, api_token: Annotated[str, Header()], session:
     session.refresh(c_note)
 
     note = Note_Response(
+        id=c_note.id,
         title=c_note.title,
         content=c_note.content,
         created_at = c_note.created_at)
@@ -149,11 +151,54 @@ def get_notes(api_token: Annotated[str, Header()], session: SessionDep) -> list[
     notes_response = []
     for note in notes:
         notes_response.append(Note_Response(
+            id=note.id,
             title=note.title,
             content=note.content,
             created_at=note.created_at))
         
     return notes_response
+
+@app.put("/notes/{note_id}")
+def update_note(note_id: int, req: Note_Request, api_token: Annotated[str, Header()], session: SessionDep) -> Note_Response:
+    c_user = find_user_by_token(api_token, session)
+
+    if c_user is None:
+        raise HTTPException(status_code=400, detail="User not found")
+    
+    select_query = select(Note).where(Note.id == note_id, Note.created_by == c_user.email)
+    note = session.exec(select_query).first()
+
+    if note is None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    
+    note.title = req.title
+    note.content = req.content
+    session.add(note)
+    session.commit()
+    session.refresh(note)
+
+    return Note_Response(
+        title=note.title,
+        content=note.content,
+        created_at=note.created_at)
+
+@app.delete("/notes/{note_id}")
+def delete_note(note_id: int, api_token: Annotated[str, Header()], session: SessionDep) -> str:
+    c_user = find_user_by_token(api_token, session)
+
+    if c_user is None:
+        raise HTTPException(status_code=400, detail="User not found")
+    
+    select_query = select(Note).where(Note.id == note_id, Note.created_by == c_user.email)
+    note = session.exec(select_query).first()
+
+    if note is None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    
+    session.delete(note)
+    session.commit()
+
+    return "Note deleted successfully"
 
 @app.post("/login")
 def login(req: Login_Request, session: SessionDep) -> Auth_Response:
