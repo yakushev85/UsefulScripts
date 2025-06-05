@@ -1,5 +1,19 @@
 # Scripts for daily usage
 
+## Python
+- script to convert image to text https://github.com/yakushev85/UsefulScripts/tree/main/ImgToTxt 
+- REST API app for keeping notes FastAPI, Docker, MySQL https://github.com/yakushev85/UsefulScripts/tree/main/NoteKeeper  
+
+## Linux
+- memory, cpu and disks
+```
+free -h ; lscpu ; df -h
+```
+
+- PipeWire is a server for handling audio and video, so below command restart it 
+```
+systemctl --user restart pipewire
+```
 
 ## Git
 - update branch from develop
