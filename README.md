@@ -15,6 +15,26 @@ free -h ; lscpu ; df -h
 systemctl --user restart pipewire
 ```
 
+- add ChessX into programs menu
+run using specified QT platform: /home/alex/Apps/chessx/release/run.sh
+```
+#!/usr/bin/env bash
+
+
+export QT_QPA_PLATFORM=xcb
+/home/alex/Apps/chessx/release/chessx
+```
+create item in the menu: /usr/share/applications/chessx.desktop
+```
+[Desktop Entry]
+Type=Application
+Name=ChessX
+Exec=/home/alex/Apps/chessx/release/run.sh
+Icon=/home/alex/Apps/chessx/data/images/chessx.png
+Comment=Chess Game
+Terminal=true
+```
+
 ## Git
 - update branch from develop
 ```
