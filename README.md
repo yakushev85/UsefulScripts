@@ -69,16 +69,6 @@ git push origin HEAD --force
 
 
 ## Docker
-- build container
-```
-docker-compose build
-```
-
-- create and up container
-```
-docker-compose up
-```
-
 - run container locally with bash console
 ```
 docker-compose run --rm app bash
@@ -87,11 +77,6 @@ docker-compose run --rm app bash
 - connect to a container via ssh
 ```
 docker exec -it container_name /bin/bash
-```
-
-- list of active docker containers
-```
-docker container ls
 ```
 
 - run Damn Vulnerable Web Application with creds admin / password
